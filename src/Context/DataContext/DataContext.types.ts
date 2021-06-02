@@ -1,13 +1,13 @@
 import React from "react"
 
 export type Option ={
-    _id:string,
+    id:string,
     text:string,
     isRight :boolean,
     isSelected? : boolean,
 }
 export type Question ={
-    _id : string,
+    id : string,
     question : string,
     image :string | null,
     points :number,
@@ -15,12 +15,12 @@ export type Question ={
     options : Option[]
 }
 export type User ={
-    _id : string,
+    id : string,
     score:number
 }
 type Level = "Easy" | "Medium" | "Hard"
 export type Quiz ={
-    _id : string,
+    id : string,
     description : string,
     image : string | null ,
     totalQuestions : number,
@@ -35,9 +35,15 @@ export type DataState = {
     quiz : Quiz[]
 }
 export type Action ={
-    type : string,
+    type : "SELECT_QUIZ",
     payload :string
-}
+} | {
+    type : "SELECT_ANSWER",
+    payload :{
+        questionId:string,
+        answerSelected :string
+    }
+} 
 
 export type DataContextModal = {
     quizState : DataState,

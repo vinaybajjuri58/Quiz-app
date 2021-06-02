@@ -11,11 +11,14 @@ export const Home = ()=>{
 }
 const QuizCard = ()=>{
     const {quizState} = useData();
+    const quizSelectorHandler=()=>{
+
+    }
     return(
         <ul>
             {quizState.quiz.map((quiz)=>(
-                <div key={quiz._id}>
-                <Link to={`/rules/${quiz._id}`}><p>{quiz.description}</p></Link>
+                <div key={quiz.id}>
+                <button onClick={quizSelectorHandler} ><Link to={`/rules/${quiz.id}`}><p>{quiz.description}</p></Link></button>
                 <p>Total Questions : {quiz.questions.length}</p>
                 <p>Level : {quiz.level}</p>
                 </div>

@@ -3,7 +3,7 @@ import {useData} from "../Context"
 export const Rules = ()=>{
     const {quizId} = useParams();
     const {quizState} = useData();
-    const quizSelected = quizState.quiz.find(quiz=>quiz._id===quizId);
+    const quizSelected = quizState.quiz.find(quiz=>quiz.id===quizId);
     return(
         <div>
             <h2>Rules for quiz:{quizSelected?.description}</h2>
