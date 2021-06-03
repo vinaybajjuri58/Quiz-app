@@ -1,24 +1,35 @@
-import {useState} from "react";
-import {useParams} from "react-router-dom"
-import {useData} from "../Context";
+import { useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom"
+import { useData} from "../Context";
 import {QuestionCard} from "../Components"
 export const QuizPage = ()=>{
-    const {quizId} = useParams();
-    const {quizState} = useData();
-    const quizSelected = quizState.quiz.find(quiz=>quiz.id===quizId);
-    const [questionNumber,setQuestionNumber] =useState(0);
-    // const [totalQuestion, setTotalQuestions] = useState(0);
-    // if(typeof(quizSelected) === ){
-    //     setTotalQuestions(quizSelected.totalQuestions)
-    // }
+    const navigate = useNavigate()
+    const {quizState,quizDispatch} = useData();
+    const {currentQuiz,currentQuestionNumber} = quizState
+    const [totalQuestions, setTotalQuestions] = useState(0);
+    useEffect(()=>{
+        if(currentQuiz===null){
+            navigate("/")
+        }
+        else{
+            setTotalQuestions(currentQuiz.totalQuestions)
+        }
+    },[navigate,setTotalQuestions,currentQuiz])
     const nextQuestion = ()=>{
-        setQuestionNumber(number=>number+1)
+        if(currentQuestionNumber+1===currentQuiz?.totalQuestions){
+            navigate("/result")
+        }
+        else{
+            quizDispatch({
+                type:"NEXT_QUESTION"
+            })
+        }
     }
-    const question=quizSelected?.questions[questionNumber]
+    const question=currentQuiz?.questions[currentQuestionNumber]
     return(
         <div>
-            <h2>Total no. of questions {quizSelected?.totalQuestions}</h2>
-            { <QuestionCard ques={question} questionSelected={questionNumber} nextQuestion={nextQuestion}  key={question?.id} />}
+            <h2>Total no. of questions {totalQuestions}</h2>
+            { <QuestionCard ques={question} questionSelected={currentQuestionNumber} nextQuestion={nextQuestion}  key={question?.id} />}
         </div>
     )
 }

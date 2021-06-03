@@ -34,16 +34,21 @@ export type DataState = {
     currentQuiz : null | Quiz ,
     quiz : Quiz[]
 }
-export type Action ={
+export type Action =
+| {
     type : "SELECT_QUIZ",
-    payload :string
+    payload :{
+        quizId:string
+    }
 } | {
     type : "SELECT_ANSWER",
     payload :{
         questionId:string,
         answerSelected :string
     }
-} 
+} | {
+    type :"NEXT_QUESTION",
+}
 
 export type DataContextModal = {
     quizState : DataState,
