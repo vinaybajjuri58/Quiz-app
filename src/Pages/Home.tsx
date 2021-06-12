@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom"
 import {useData} from "../Context";
+import {Card,Button} from "react-bootstrap"
 export const Home = ()=>{
     const {quizState} = useData();
     return(
@@ -22,12 +23,26 @@ const QuizCard = ()=>{
     return(
         <ul>
             {quizState.quiz.map((quiz)=>(
-                <div key={quiz.id}>
-                <button onClick={()=>quizSelectorHandler({quizId:quiz.id})} ><Link to={`/rules/${quiz.id}`}><p>{quiz.description}</p></Link></button>
-                <p>Total Questions : {quiz.questions.length}</p>
-                <p>Level : {quiz.level}</p>
-                </div>
+                <Card 
+                bg='secondary'
+                border='dark'
+                text='white'
+                style={{ width: '18rem' }} key={quiz.id} >
+                    <Card.Body>
+                        <Card.Title>{quiz.description}</Card.Title>
+                        <Card.Text>
+                        Total Questions : {quiz.questions.length} <br />
+                        Level : {quiz.level}
+                        </Card.Text>
+                        <Button onClick={()=>quizSelectorHandler({quizId:quiz.id})} variant="light" text="white">
+                            <Link to={`/rules/${quiz.id}`}>Play</Link>
+                        </Button>
+                    </Card.Body>
+                </Card>
+                
             ))}
         </ul>
     )
 }
+
+

@@ -1,9 +1,9 @@
 import {RoutesComponent} from "./RoutesComponent"
-import {Navbar} from "./Components"
+import {NavbarComponent} from "./Components"
 function App() {
   return (
     <div>
-      <Navbar />
+      <NavbarComponent />
       <RoutesComponent />
     </div>
   );

@@ -1,8 +1,9 @@
 import {Link} from "react-router-dom"
-export const Navbar = ()=>{
+import {Navbar} from "react-bootstrap"
+export const NavbarComponent = ()=>{
     return(
-        <div>
-            <Link to="/"><h2>Finance Quiz</h2></Link>
-        </div>
+         <Navbar bg="dark" variant="dark" >
+         <Link to="/"><Navbar.Brand >Finance Quiz</Navbar.Brand></Link>
+       </Navbar>
     )
 }
