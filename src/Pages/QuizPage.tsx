@@ -28,7 +28,7 @@ export const QuizPage = ()=>{
     const question=currentQuiz?.questions[currentQuestionNumber]
     return(
         <div>
-            <h2>Total no. of questions {totalQuestions}</h2>
+            <p>Questions left : {totalQuestions-currentQuestionNumber}</p>
             { <QuestionCard ques={question} questionSelected={currentQuestionNumber} nextQuestion={nextQuestion}  key={question?.id} />}
         </div>
     )

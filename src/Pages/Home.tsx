@@ -34,7 +34,7 @@ const QuizCard = ()=>{
                         Total Questions : {quiz.questions.length} <br />
                         Level : {quiz.level}
                         </Card.Text>
-                        <Button onClick={()=>quizSelectorHandler({quizId:quiz.id})} variant="light" text="white">
+                        <Button onClick={()=>quizSelectorHandler({quizId:quiz.id})} variant="light">
                             <Link to={`/rules/${quiz.id}`}>Play</Link>
                         </Button>
                     </Card.Body>

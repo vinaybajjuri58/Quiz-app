@@ -1,4 +1,5 @@
 import {Link, useParams} from "react-router-dom"
+import {Button} from "react-bootstrap"
 import {useData} from "../Context"
 export const Rules = ()=>{
     const {quizId} = useParams();
@@ -7,7 +8,7 @@ export const Rules = ()=>{
     return(
         <div>
             <h2>Rules for quiz:{quizSelected?.description}</h2>
-            <Link to={`/quiz/${quizId}`} >Play</Link>
+            <Button variant="outline-secondary"><Link to={`/quiz/${quizId}`} >Play</Link></Button>
         </div>
     )
 }
