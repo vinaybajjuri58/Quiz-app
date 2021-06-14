@@ -9,7 +9,8 @@ type PropsType ={
 }
 export const QuestionCard = ({ques,questionSelected,nextQuestion}: PropsType)=>{
     const {quizDispatch} = useData()
-    const [optionSelected,setOptionSelected] = useState(false)
+    const [optionSelected,setOptionSelected] = useState(false);
+    const [selectedOptionId,setSelectedOptionId] = useState<null | String>(null);
     const optionChooseHandler =({optionId}:{optionId:string})=>{
         quizDispatch({
             type:"SELECT_ANSWER",
@@ -19,6 +20,7 @@ export const QuestionCard = ({ques,questionSelected,nextQuestion}: PropsType)=>{
             }
         })
         setOptionSelected(true);
+        setSelectedOptionId(optionId);
     }
     return(
         <Card style={{ width: '18rem' }}>
@@ -30,14 +32,15 @@ export const QuestionCard = ({ques,questionSelected,nextQuestion}: PropsType)=>{
                 <ListGroupItem key={option.id}>
                     <Button 
                     disabled={optionSelected}
-                    variant = {optionSelected ? (option.isRight ? "success" : "danger") : "light"}
-                    onClick={()=>optionChooseHandler({optionId:option.id})} >
+                    variant = {optionSelected ? (option.isRight ? "success" : (option.id===selectedOptionId ? "danger" : "light")) : "light"}
+                    onClick={()=>{
+                        optionChooseHandler({optionId:option.id})}} >
                         {option.text}
                     </Button>
                 </ListGroupItem>
             ))}
             </ListGroup>
-                <Button onClick={()=>nextQuestion()} >Next Question</Button>
+                <Button disabled={!optionSelected} onClick={()=>nextQuestion()} >Next Question</Button>
         </Card>
     )
 }
