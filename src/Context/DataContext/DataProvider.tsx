@@ -1,13 +1,12 @@
 import { createContext, useContext, useReducer } from "react";
 import { DataContextModal,DataState } from "./DataContext.types";
 import {reducerFunction} from "./ReducerFunction"
-import {quizzes} from "./QuizData"
 
 const initialDataState : DataState={
     score : 0,
     currentQuestionNumber:-1,
     currentQuiz: null,
-    quiz : quizzes
+    quiz : []
 }
 const DataContext = createContext({} as DataContextModal);
 

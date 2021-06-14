@@ -21,6 +21,12 @@ export const reducerFunction = (state:DataState,action:Action)=>{
                 ...state,
                 score : optionSelected!.isRight===true ? state.score+1 : state.score
             } 
+        case "LOAD_DATA":
+            return {
+                ...state,
+                quiz:action.payload
+            }
+
         default:
             return {
                 ...state

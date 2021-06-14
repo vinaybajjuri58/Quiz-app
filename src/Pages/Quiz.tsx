@@ -29,6 +29,7 @@ const QuizCard = ()=>{
                 text='dark'
                 style={{ width: '18rem' }} key={quiz.id} >
                     <Card.Body>
+                    <Card.Img variant="top" src={quiz.image} />
                         <Card.Title>{quiz.description}</Card.Title>
                         <Card.Text>
                         Total Questions : {quiz.questions.length} <br />

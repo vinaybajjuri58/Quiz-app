@@ -18,15 +18,15 @@ export type User ={
     id : string,
     score:number
 }
-type Level = "Easy" | "Medium" | "Hard"
+// type Level = "Easy" | "Medium" | "Hard"
 export type Quiz ={
     id : string,
     description : string,
-    image : string | null ,
+    image : string ,
     totalQuestions : number,
     questions : Question[],
     type : string | null,
-    level : Level,
+    level : any,
 }
 export type DataState = {
     score : number,
@@ -48,6 +48,9 @@ export type Action =
     }
 } | {
     type :"NEXT_QUESTION",
+} | {
+    type:"LOAD_DATA",
+    payload:Quiz[]
 }
 
 export type DataContextModal = {
