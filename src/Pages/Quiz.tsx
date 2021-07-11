@@ -33,30 +33,31 @@ const QuizCard = ()=>{
         <ul>
             {quizState.quiz.length===0 && <BounceLoader color={color} loading={quizState.quiz.length===0} css={override} size={150} />}
             { quizState.quiz.length> 0 &&(
-                <>
+                <div>
                 <h2>Quizzes</h2>
-                {quizState.quiz.map((quiz)=>(
-                <Card 
-                bg='light'
-                border='dark'
-                text='dark'
-                style={{ width: '18rem',margin:"1rem" }} key={quiz.id} >
-                    <Card.Body>
-                    <Card.Img variant="top" src={quiz.image} />
-                        <Card.Title>{quiz.description}</Card.Title>
-                        <Card.Text>
-                        Total Questions : {quiz.questions.length} <br />
-                        Level : {quiz.level}
-                        </Card.Text>
-                        <Link to={`/rules/${quiz.id}`}>
-                            <Button onClick={()=>quizSelectorHandler({quizId:quiz.id})} variant="primary">
-                                Play
-                            </Button>
-                        </Link>
-                    </Card.Body>
-                </Card>)
-            )}
-            </>
+                <div style={{display:"flex",flexWrap:"wrap",flexDirection:"row"}} >
+                    {quizState.quiz.map((quiz)=>(
+                    <Card 
+                    bg='light'
+                    border='dark'
+                    text='dark'
+                    style={{ width: '18rem',margin:"1rem" }} key={quiz.id} >
+                        <Card.Body>
+                        <Card.Img variant="top" src={quiz.image} />
+                            <Card.Title>{quiz.description}</Card.Title>
+                            <Card.Text>
+                            Total Questions : {quiz.questions.length} <br />
+                            </Card.Text>
+                            <Link to={`/rules/${quiz.id}`}>
+                                <Button onClick={()=>quizSelectorHandler({quizId:quiz.id})} variant="primary">
+                                    Play
+                                </Button>
+                            </Link>
+                        </Card.Body>
+                    </Card>)
+                    )}
+                </div>
+                </div>
             )}
         </ul>
     )

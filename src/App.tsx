@@ -23,8 +23,10 @@ function App() {
   return (
     <div>
       <NavbarComponent />
-      <Container>
+      <Container >
+        <div style={{marginBottom:"1rem"}} >
       <RoutesComponent />
+      </div>
     </Container>
     </div>
   );
