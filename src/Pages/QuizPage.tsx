@@ -8,13 +8,13 @@ export const QuizPage = ()=>{
     const {currentQuiz,currentQuestionNumber} = quizState
     const [totalQuestions, setTotalQuestions] = useState(0);
     useEffect(()=>{
-        if(currentQuiz===null){
-            navigate("/")
+        if(!currentQuiz){
+            navigate("/");
         }
         else{
             setTotalQuestions(currentQuiz.totalQuestions)
         }
-    },[navigate,setTotalQuestions,currentQuiz])
+    },[navigate,currentQuiz])
     const nextQuestion = ()=>{
         if(currentQuestionNumber+1===currentQuiz?.totalQuestions){
             navigate("/result")

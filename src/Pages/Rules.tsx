@@ -5,18 +5,18 @@ import { useEffect } from "react";
 export const Rules = ()=>{
     const {quizId} = useParams();
     const {quizState} = useData();
-    const quizSelected = quizState.quiz.find(quiz=>quiz.id===quizId);
+    const {currentQuiz} = quizState
     const navigate= useNavigate()
     useEffect(()=>{
-        if(quizSelected===undefined){
-            navigate("/quiz")
+        if(!currentQuiz){
+            navigate("/")
         }
-    },[navigate,quizSelected])
+    },[navigate,currentQuiz])
     return(
         <div>
             <h3>Rules </h3>
-            <p>Selected quiz : {quizSelected!.description}</p>
-            <p>Total no of questions : {quizSelected!.totalQuestions}</p>
+            <p>Selected quiz : {currentQuiz?.description}</p>
+            <p>Total no of questions : {currentQuiz?.totalQuestions}</p>
             <p>Each question has 1 point</p>
             <p>No negative Points</p>
             <Link to={`/quiz/${quizId}`}>
